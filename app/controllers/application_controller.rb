@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
 
   def require_user
-    redirect '/' unless logged_in?
+    redirect_to '/' unless logged_in?
   end
 
   def find_question(comment)

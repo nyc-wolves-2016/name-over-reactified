@@ -2,51 +2,53 @@ class UsersController < ApplicationController
 
   def login
     if logged_in?
-      redirect "/users/#{current_user.id}"
+      @user = current_user
+      redirect_to @user
     else
       session[:login] = true
-      erb :'/session/login'
     end
   end
 
   def signin
-    user = User.find_by(email: params[:email])
+    # find/find_by?
+    @user = User.find_by(user_params)
 
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      redirect "/users/#{user.id}"
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect_to @user
     else
       @errors = ["Invalid email or password"]
-      erb :'/session/login', locals: {errors: @errors}
+      render 'login'
     end
   end
 
   def logout
     require_user
     session.clear
-    redirect '/'
+    redirect_to root_url
   end
 
   def new
-    erb :'/users/_new'
   end
 
   def create
-    user = User.new(params[:user])
-    if user.save
+    @user = User.new(user_params)
+    if @user.save
       session[:user_id] = user.id
-      redirect '/'
+      redirect_to @user
     else
       @errors = user.errors.full_messages
-      erb :'/users/_new', locals: {errors: @errors}
+      render 'new'
     end
   end
 
   def show
     require_user
     @user = User.find_by(id: params[:id])
-    # binding.pry
-    erb :'/users/show'
   end
 
+  private
+  def user_params
+    params.require(:user).permit(:username, :email, :password)
+  end
 end
