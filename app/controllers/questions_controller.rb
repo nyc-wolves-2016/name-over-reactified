@@ -1,6 +1,9 @@
 class QuestionsController < ApplicationController
   def index
-    @questions = Question.all
+    if request.xhr?
+      questions = Question.all.as_json
+      render json: questions
+    end
   end
 
   def new
