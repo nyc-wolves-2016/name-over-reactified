@@ -7,12 +7,16 @@ class App extends React.Component {
           title: "What is this??",
           content: "What is this I must know omg omg omg what is this?"
         }
+      ],
+      answers: [
+        {
+          content: "answer content"
+        }
       ]
     }
   }
 
   componentDidMount() {
-
     $.ajax({
       url: '/questions',
       method: 'GET'
@@ -27,10 +31,7 @@ class App extends React.Component {
     return(
       <div>
         <h1>Questions:</h1>
-
         <QuestionsListView data={this.state.questions} />
-
-
       </div>
     )
   }
