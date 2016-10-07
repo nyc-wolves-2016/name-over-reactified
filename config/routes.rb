@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+
+  ## Create a new question comment
+  post '/questions/:question_id/comments', to: 'comments#create_question_comment'
+
+  # Create a new answer comment
+  post '/questions/:question_id/answer/:answer_id/new', to: 'comments#create_answer_comment'
+
+  # Delete a comment
+  delete '/comments/:comment_id', to: 'comments#destroy'
+
+
   post '/questions/:question_id/answers', to: 'answers#create'
 
   # put '/answers/:answer_id', to: 'answers#best_answer'
