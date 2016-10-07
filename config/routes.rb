@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  # TODO Votes route
+  post '/votes', to: 'votes#create'
+
   ## Create a new question comment
   post '/questions/:question_id/comments', to: 'comments#create_question_comment'
 
@@ -8,7 +11,6 @@ Rails.application.routes.draw do
 
   # Delete a comment
   delete '/comments/:comment_id', to: 'comments#destroy'
-
 
   post '/questions/:question_id/answers', to: 'answers#create'
 
