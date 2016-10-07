@@ -1,2 +1,24 @@
-<h1>Questions#new</h1>
-<p>Find me in app/views/questions/new.html.erb</p>
+<div class="container">
+
+<% if @errors %>
+  <% @errors.each do |error| %>
+    <%= error %>
+  <% end %>
+<% end %>
+
+<form action='/questions/new' method="post">
+
+  <label for "title">Title</label>
+  <br>
+  <input type="text" name="title">
+  <br>
+  <br>
+
+  <label for="content">Question content: </label>
+  <br>
+  <textarea rows="10" cols="50" name="content"></textarea>
+  <br>
+  <input type="submit" value="Submit"><br>
+</form>
+
+</div>
