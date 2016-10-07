@@ -12,8 +12,8 @@ Rails.application.routes.draw do
 
   post '/questions/:question_id/answers', to: 'answers#create'
 
+  # TODO later
   # put '/answers/:answer_id', to: 'answers#best_answer'
-
   delete '/answers/:answer_id', to: 'answers#destroy'
 
   get '/questions', to: 'questions#index'
