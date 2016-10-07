@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  post '/questions/:question_id/answers', to: 'answers#create'
+
+  # put '/answers/:answer_id', to: 'answers#best_answer'
+
+  delete '/answers/:answer_id', to: 'answers#destroy'
+
   get '/questions', to: 'questions#index'
 
   get '/questions/new', to: 'questions#new'
