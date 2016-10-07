@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: 'questions#index'
 
   # TODO Votes route
   post '/votes', to: 'votes#create'
