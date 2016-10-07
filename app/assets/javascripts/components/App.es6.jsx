@@ -1,8 +1,6 @@
 class App extends React.Component {
   constructor() {
-
     super();
-
     this.state = {
       questions: [
         {
@@ -11,9 +9,18 @@ class App extends React.Component {
         }
       ]
     }
-
   }
 
+  componentDidMount() {
+
+    $.ajax({
+      url: '/questions',
+      method: 'GET'
+    })
+    .done(function(response) {
+      this.setState({questions: response})
+    }.bind(this))
+  }
 
 
   render() {

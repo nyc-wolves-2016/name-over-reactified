@@ -1,6 +1,5 @@
 class QuestionsListView extends React.Component {
   render() {
-    debugger;
     let questions = this.props.data;
 
     return (
